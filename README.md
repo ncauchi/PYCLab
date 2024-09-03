@@ -1,3 +1,3 @@
 # PYCLab
 
-## For compression testing with Instron machine
+### For compression testing with Instron machine
