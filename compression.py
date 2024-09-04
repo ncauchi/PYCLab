@@ -11,7 +11,9 @@ success, image = cam.read()
 if success:
     cv2.imwrite("test.png", image)
 
-data = decode(cv2.imread('control3.png'))
+
+im = cv2.imread('control2.png')
+data = decode(im)
 name, loc = data[0]
 print(name)
 
