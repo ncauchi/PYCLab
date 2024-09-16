@@ -18,14 +18,13 @@ sampleCode = ""
 
 
 while True:
+    image, success, data = None
     #Get Name of Sample
     success, image = cam.read()
 
     if not success:
         exit("Image capture error")
 
-    #cv2.imwrite("img.png", image)
-    #im = cv2.imread("img.png")
     data = decode(image)
 
     if(len(data) < 1):
@@ -33,7 +32,6 @@ while True:
     
     name, loc = data[0]
     sampleCode = bytes.decode(name)
-    #os.remove("img.png")
     print("Starting test on sample: ", sampleCode)
 
     #Tell UR5 to grab next sample
