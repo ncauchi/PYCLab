@@ -23,7 +23,6 @@ while True:
     if not success:
         exit("Image capture error")
 
-    cv2.imshow("Current",image)
     data = decode(image)
 
     if(len(data) < 1):
