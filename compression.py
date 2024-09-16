@@ -32,19 +32,29 @@ while True:
     sampleCode = bytes.decode(name)
     print("Starting test on sample: ", sampleCode)
 
-    #Tell UR5 to grab next sample
+    #Tell UR5 to grab next sample and Instron to start
     arduino.write(int(1).to_bytes() )
     time.sleep(0.05)
-    res = arduino.readline().decode()
+    res = int.from_bytes(arduino.readline())
 
-    if(res != "On"):
+    if(res != 1):
         exit("Arduino communication error")
 
-    print("Starting Test")
-
-    #Tell Instron to start
     #Get Signal From Instron
+    while arduino.in_waiting < 1:  #wait until arduino sends signal
+        pass
+    
+    res = int.from_bytes(arduino.readline())
+
+    if(res != 2):
+        exit("Arduino communication error")
+
+    print("Test Complete")
+
+
+'''
     inp = input("[dev] Test Complete (Y/N) ") 
 
     if(inp != "Y" and inp != "y"):
         exit("Exiting")
+'''
