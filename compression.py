@@ -24,16 +24,16 @@ while True:
     if not success:
         exit("Image capture error")
 
-    cv2.imwrite("img.png", image)
-    im = cv2.imread("img.png")
-    data = decode(im)
+    #cv2.imwrite("img.png", image)
+    #im = cv2.imread("img.png")
+    data = decode(image)
 
     if(len(data) < 1):
         exit("Could not decode data matrix from image")
     
     name, loc = data[0]
     sampleCode = bytes.decode(name)
-    os.remove("img.png")
+    #os.remove("img.png")
     print("Starting test on sample: ", sampleCode)
 
     #Tell UR5 to grab next sample
@@ -50,5 +50,5 @@ while True:
     #Get Signal From Instron
     inp = input("[dev] Test Complete (Y/N) ") 
 
-    if(inp != "Y" or inp != "y"):
+    if(inp != "Y" and inp != "y"):
         exit("Exiting")
