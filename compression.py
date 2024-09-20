@@ -7,7 +7,7 @@ from pylibdmtx.pylibdmtx import decode
 
 
 #Serial Comm Setup
-pcPort = 'COM4'     #might be different for different computers
+pcPort = 'COM6'     #might be different for different computers
 arduino = serial.Serial(port=pcPort, baudrate=9600, timeout=.1) 
 
 #Camera Setup
@@ -15,6 +15,7 @@ cam_port = 0
 cam = cv2.VideoCapture(cam_port) 
 sampleCode = ""
 
+input("Press enter to begin")
 
 while True:
     #Get Name of Sample
