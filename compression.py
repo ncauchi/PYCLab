@@ -1,4 +1,5 @@
 
+import processData
 import serial
 import time
 import cv2
@@ -15,9 +16,18 @@ cam_port = 0
 cam = cv2.VideoCapture(cam_port) 
 sampleCode = ""
 
+#Data Processing Setup
+dataFile = "example_data.csv"
+nameFile = "data\\sample_names.txt"
+startLine = 3
+
 input("Press enter to begin")
 
+
+namef = open(nameFile, "w")
+
 while True:
+    print("Taking Sample Picture")
     #Get Name of Sample
     success, image = cam.read()
 
@@ -27,10 +37,12 @@ while True:
     data = decode(image)
 
     if(len(data) < 1):
-        exit("Could not decode data matrix from image")
+        print("Could not decode data matrix from image")
+        break
     
     name, loc = data[0]
     sampleCode = bytes.decode(name)
+    namef.write(sampleCode+"\n")        #write name to file
     print("Starting test on sample: ", sampleCode)
 
     #Tell UR5 to grab next sample and Instron to start
@@ -52,10 +64,8 @@ while True:
 
     print("Test Complete")
 
+namef.close()
 
-'''
-    inp = input("[dev] Test Complete (Y/N) ") 
+if input("Process Data? (y/n)") == "y":
+    processData.process(dataFile, nameFile, startLine)
 
-    if(inp != "Y" and inp != "y"):
-        exit("Exiting")
-'''
