@@ -1,6 +1,6 @@
 import processData
 
-dataFile = "testing\\example_data.csv"
+dataFile = "data\\data_1.csv"
 nameFile = "testing\\aaa.txt"
 startLine = 3
 
