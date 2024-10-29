@@ -17,7 +17,7 @@ cam = cv2.VideoCapture(cam_port)
 sampleCode = ""
 
 #Data Processing Setup
-dataFile = "example_data.csv"
+dataFile = "data\\data_1.is_ccyclic_Exports\\data_1.csv"
 nameFile = "data\\sample_names.txt"
 startLine = 3
 
