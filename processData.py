@@ -24,7 +24,12 @@ def process(dataFile, nameFile, startLine):
 
     for line in file:
         prevTime = currTime
-        currTime = float(line[1])
+        currTime_raw = line[1]
+        if(len(currTime_raw) == 0){
+            print("Data Processing Complete")
+            return
+        }
+        currTime = float(currTime_raw)
 
         if currTime - prevTime > 1 :
             if samp != None:
@@ -39,5 +44,5 @@ def process(dataFile, nameFile, startLine):
         
         output.writerow([currTime, line[2], line[3]])
 
-    print("Data Processing Complete")
+    
 
